@@ -1,16 +1,4 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 
 import {
   Row,
@@ -34,7 +22,7 @@ import {
   FacebookFilled,
 } from "@ant-design/icons";
 
-import { NavLink, Link } from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../assets/images/team-2.jpg";
 
@@ -42,18 +30,22 @@ const ButtonContainer = styled.div`
   .ant-btn-primary {
     background-color: #1890ff;
   }
+
   .ant-btn-success {
     background-color: #52c41a;
   }
+
   .ant-btn-yellow {
     background-color: #fadb14;
   }
+
   .ant-btn-black {
     background-color: #262626;
     color: #fff;
     border: 0px;
     border-radius: 5px;
   }
+
   .ant-switch-active {
     background-color: #1890ff;
   }
@@ -174,7 +166,7 @@ const menu = (
     renderItem={(item) => (
       <List.Item>
         <List.Item.Meta
-          avatar={<Avatar shape="square" src={item.avatar} />}
+          avatar={<Avatar shape="square" src={item.avatar}/>}
           title={item.title}
           description={item.description}
         />
@@ -227,7 +219,8 @@ const toggler = [
     viewBox="0 0 448 512"
     key={0}
   >
-    <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+    <path
+      d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
   </svg>,
 ];
 
@@ -250,15 +243,15 @@ const setting = [
 ];
 
 function Header({
-  placement,
-  name,
-  subName,
-  onPress,
-  handleSidenavColor,
-  handleSidenavType,
-  handleFixedNavbar,
-}) {
-  const { Title, Text } = Typography;
+                  placement,
+                  name,
+                  subName,
+                  onPress,
+                  handleSidenavColor,
+                  handleSidenavType,
+                  handleFixedNavbar,
+                }) {
+  const {Title, Text} = Typography;
 
   const [visible, setVisible] = useState(false);
   const [sidenavType, setSidenavType] = useState("transparent");
@@ -387,7 +380,7 @@ function Header({
                 </div>
                 <div className="fixed-nav mb-2">
                   <Title level={5}>Navbar Fixed </Title>
-                  <Switch onChange={(e) => handleFixedNavbar(e)} />
+                  <Switch onChange={(e) => handleFixedNavbar(e)}/>
                 </div>
                 <div className="ant-docment">
                   <ButtonContainer>
@@ -398,7 +391,7 @@ function Header({
                   </ButtonContainer>
                 </div>
                 <div className="viewstar">
-                  <a href="#pablo">{<StarOutlined />} Star</a>
+                  <a href="#pablo">{<StarOutlined/>} Star</a>
                   <a href="#pablo"> 190</a>
                 </div>
 
@@ -407,8 +400,8 @@ function Header({
                     Thank you for sharing!
                   </Title>
                   <ButtonContainer className="social">
-                    <Button type="black">{<TwitterOutlined />}TWEET</Button>
-                    <Button type="black">{<FacebookFilled />}SHARE</Button>
+                    <Button type="black">{<TwitterOutlined/>}TWEET</Button>
+                    <Button type="black">{<FacebookFilled/>}SHARE</Button>
                   </ButtonContainer>
                 </div>
               </div>
@@ -421,7 +414,7 @@ function Header({
           <Input
             className="header-search"
             placeholder="Type here..."
-            prefix={<SearchOutlined />}
+            prefix={<SearchOutlined/>}
           />
         </Col>
       </Row>
