@@ -86,11 +86,11 @@ function Sidenav({color}) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="2">
-          <NavLink to="/tables">
+          <NavLink to="/user">
             <span
               className="icon"
               style={{
-                background: page === "tables" ? color : "",
+                background: page === "user" ? color : "",
               }}
             >
               <FontAwesomeIcon icon={faUser} style={{width: 16, height: 16}} />
@@ -99,11 +99,11 @@ function Sidenav({color}) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="3">
-          <NavLink to="/billing">
+          <NavLink to="/post">
             <span
               className="icon"
               style={{
-                background: page === "billing" ? color : "",
+                background: page === "post" ? color : "",
               }}
             >
               <FontAwesomeIcon icon={faBook} style={{width: 16, height: 16}} />
@@ -112,11 +112,11 @@ function Sidenav({color}) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="4">
-          <NavLink to="/rtl">
+          <NavLink to="/story">
             <span
               className="icon"
               style={{
-                background: page === "rtl" ? color : "",
+                background: page === "story" ? color : "",
               }}
             >
               <FontAwesomeIcon icon={faSignsPost} style={{width: 16, height: 16}} />

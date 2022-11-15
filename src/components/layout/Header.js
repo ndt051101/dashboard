@@ -41,7 +41,7 @@ const ButtonContainer = styled.div`
   .ant-btn-black {
     background-color: #262626;
     color: #fff;
-    border: 0px;
+    border: 0;
     border-radius: 5px;
   }
 
@@ -62,7 +62,7 @@ const wifi = [
     <g
       id="Page-1"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
       fillRule="evenodd"
     >
@@ -171,7 +171,6 @@ const toggler = [
 function Header({
                   placement,
                   name,
-                  subName,
                   onPress,
                   handleSidenavColor,
                   handleSidenavType,
@@ -202,14 +201,6 @@ function Header({
               {name.replace("/", "")}
             </Breadcrumb.Item>
           </Breadcrumb>
-          <div className="ant-page-header-heading">
-            <span
-              className="ant-page-header-heading-title"
-              style={{textTransform: "capitalize"}}
-            >
-              {subName.replace("/", "")}
-            </span>
-          </div>
         </Col>
         <Col span={24} md={18} className="header-control">
           <Badge size="small" count={4}>
