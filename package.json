@@ -1,5 +1,5 @@
 {
-  "name": "muse-ant-design-dashboard",
+  "name": "dashboard",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.16.6",
     "apexcharts": "^3.27.1",
+    "axios": "^1.2.0",
     "install": "^0.13.0",
     "react": "^17.0.2",
     "react-apexcharts": "^1.3.9",

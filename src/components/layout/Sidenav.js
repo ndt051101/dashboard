@@ -1,30 +1,18 @@
 import {Menu} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChartLine, faUser, faBook, faSignsPost} from '@fortawesome/free-solid-svg-icons';
-import {NavLink, useLocation} from "react-router-dom";
+import {faBook, faSignsPost} from '@fortawesome/free-solid-svg-icons';
+import {NavLink, useLocation, Link} from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
 function Sidenav({color}) {
   const {pathname} = useLocation();
   const page = pathname.replace("/", "");
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-  const profile = [
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={0}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM12 7C12 8.10457 11.1046 9 10 9C8.89543 9 8 8.10457 8 7C8 5.89543 8.89543 5 10 5C11.1046 5 12 5.89543 12 7ZM9.99993 11C7.98239 11 6.24394 12.195 5.45374 13.9157C6.55403 15.192 8.18265 16 9.99998 16C11.8173 16 13.4459 15.1921 14.5462 13.9158C13.756 12.195 12.0175 11 9.99993 11Z"
-        fill={color}
-      ></path>
-    </svg>,
-  ];
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    window.location.reload();
+  }
 
   const signin = [
     <svg
@@ -66,40 +54,16 @@ function Sidenav({color}) {
 
   return (
     <>
+      <NavLink to="/posts">
       <div className="brand">
         <img src={logo} alt=""/>
         <span>Dashboard</span>
       </div>
+      </NavLink>
       <hr/>
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
-          <NavLink to="/dashboard">
-            <span
-              className="icon"
-              style={{
-                background: page === "dashboard" ? color : "",
-              }}
-            >
-              <FontAwesomeIcon icon={faChartLine} style={{width: 16, height: 16}} />
-            </span>
-            <span className="label">Trang chủ</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <NavLink to="/user">
-            <span
-              className="icon"
-              style={{
-                background: page === "user" ? color : "",
-              }}
-            >
-              <FontAwesomeIcon icon={faUser} style={{width: 16, height: 16}} />
-            </span>
-            <span className="label">Người dùng</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <NavLink to="/post">
+          <NavLink to="/posts">
             <span
               className="icon"
               style={{
@@ -108,11 +72,11 @@ function Sidenav({color}) {
             >
               <FontAwesomeIcon icon={faBook} style={{width: 16, height: 16}} />
             </span>
-            <span className="label">Bài viết</span>
+            <span className="label">Posts</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="4">
-          <NavLink to="/story">
+        <Menu.Item key="2">
+          <NavLink to="/stories">
             <span
               className="icon"
               style={{
@@ -121,37 +85,26 @@ function Sidenav({color}) {
             >
               <FontAwesomeIcon icon={faSignsPost} style={{width: 16, height: 16}} />
             </span>
-            <span className="label">Story</span>
+            <span className="label">Stories</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item className="menu-item-header" key="5">
           Trang tài khoản
         </Menu.Item>
-        <Menu.Item key="6">
-          <NavLink to="/profile">
-            <span
-              className="icon"
-              style={{
-                background: page === "profile" ? color : "",
-              }}
-            >
-              {profile}
-            </span>
-            <span className="label">Thông tin</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="7">
-          <NavLink to="/sign-in">
-            <span className="icon">{signin}</span>
-            <span className="label">Đăng nhập</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="8">
-          <NavLink to="/sign-up">
-            <span className="icon">{signup}</span>
-            <span className="label">Đăng xuất</span>
-          </NavLink>
-        </Menu.Item>
+        {
+          !isLoggedIn ? <Menu.Item key="3">
+            <NavLink to="/sign-in">
+              <span className="icon">{signin}</span>
+              <span className="label">Đăng nhập</span>
+            </NavLink>
+          </Menu.Item> :
+            <Menu.Item key="4">
+              <Link to={'#'} onClick={() => handleLogout()}>
+                <span className="icon">{signup}</span>
+                <span className="label" >Đăng xuất</span>
+              </Link>
+            </Menu.Item>
+        }
       </Menu>
     </>
   );

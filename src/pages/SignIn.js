@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   Layout,
@@ -10,7 +10,7 @@ import {
   Typography,
   Form,
   Input,
-  Switch,
+  message,
 } from "antd";
 import signinbg from "../assets/images/img-signin.jpg";
 import {
@@ -19,16 +19,27 @@ import {
   InstagramOutlined,
   GithubOutlined,
 } from "@ant-design/icons";
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
-}
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 
-export default class SignIn extends Component {
-  render() {
-    const onFinish = (values) => {
-      console.log("Success:", values);
+export default function SignIn() {
+  const history = useHistory();
+    const onFinish = async (values) => {
+      try {
+        const response = await axios.post('http://localhost:5000/api/admin/login', values);
+        if(response.status === 201) {
+          message.success('Login successfully!');
+          localStorage.setItem('isLoggedIn', true);
+          history.push('/posts');
+          window.location.reload();
+        }
+      }catch (e) {
+        console.log(e);
+        message.error('Username or password incorrect!');
+      }
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -49,7 +60,7 @@ export default class SignIn extends Component {
               >
                 <Title className="mb-15">Sign In</Title>
                 <Title className="font-regular text-muted" level={5}>
-                  Enter your email and password to sign in
+                  Enter your username and password to sign in
                 </Title>
                 <Form
                   onFinish={onFinish}
@@ -59,16 +70,16 @@ export default class SignIn extends Component {
                 >
                   <Form.Item
                     className="username"
-                    label="Email"
-                    name="email"
+                    label="Username"
+                    name="account"
                     rules={[
                       {
                         required: true,
-                        message: "Please input your email!",
+                        message: "Please input your username!",
                       },
                     ]}
                   >
-                    <Input placeholder="Email" />
+                    <Input placeholder="Username" />
                   </Form.Item>
 
                   <Form.Item
@@ -82,18 +93,8 @@ export default class SignIn extends Component {
                       },
                     ]}
                   >
-                    <Input placeholder="Password" />
+                    <Input.Password placeholder="Password" style={{borderRadius: 6, padding: "0 11px"}} />
                   </Form.Item>
-
-                  <Form.Item
-                    name="remember"
-                    className="aligin-center"
-                    valuePropName="checked"
-                  >
-                    <Switch defaultChecked onChange={onChange} />
-                    Remember me
-                  </Form.Item>
-
                   <Form.Item>
                     <Button
                       type="primary"
@@ -103,12 +104,6 @@ export default class SignIn extends Component {
                       SIGN IN
                     </Button>
                   </Form.Item>
-                  <p className="font-semibold text-muted">
-                    Don't have an account?{" "}
-                    <Link to="/sign-up" className="text-dark font-bold">
-                      Sign Up
-                    </Link>
-                  </p>
                 </Form>
               </Col>
               <Col
@@ -159,11 +154,10 @@ export default class SignIn extends Component {
             </Menu>
             <p className="copyright">
               {" "}
-              Copyright © 2022 by <a href="#pablo">tiendn5111</a>.{" "}
+              Copyright © 2022 by <a href="#">tiendn5111</a>.{" "}
             </p>
           </Footer>
         </Layout>
       </>
     );
-  }
 }

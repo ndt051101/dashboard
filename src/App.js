@@ -1,28 +1,27 @@
 import {Switch, Route, Redirect} from "react-router-dom";
-import Home from "./pages/Home";
-import Tables from "./pages/Tables";
-import Profile from "./pages/Profile";
-import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Posts from "./pages/Posts";
+import Stories from "./pages/Stories";
 import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 
 function App() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
   return (
     <div className="App">
       <Switch>
-        <Route path="/sign-up" exact component={SignUp}/>
-        <Route path="/sign-in" exact component={SignIn}/>
-        <Main>
-          <Route exact path="/dashboard" component={Home}/>
-          <Route exact path="/user" component={Tables}/>
-          <Route exact path="/post" component={Tables}/>
-          <Route exact path="/story" component={Tables}/>
-          <Route exact path="/profile" component={Profile}/>
-          <Redirect from="*" to="/dashboard"/>
-        </Main>
+
+          {
+              isLoggedIn ? <Main>
+                  <Route  path="/posts" component={Posts}/>
+                  <Route path="/stories" component={Stories}/>
+
+              </Main> : <Route path="*" component={SignIn}/>
+          }
+          <Redirect from="*" component={SignIn}/>
       </Switch>
     </div>
   );
