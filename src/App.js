@@ -6,6 +6,7 @@ import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
+import Users from "pages/User";
 
 function App() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -18,6 +19,7 @@ function App() {
               isLoggedIn ? <Main>
                   <Route  path="/posts" component={Posts}/>
                   <Route path="/stories" component={Stories}/>
+                  <Route path="/users" component={Users}/>
 
               </Main> : <Route path="*" component={SignIn}/>
           }

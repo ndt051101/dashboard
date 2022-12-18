@@ -1,18 +1,18 @@
-import {Menu} from "antd";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBook, faSignsPost} from '@fortawesome/free-solid-svg-icons';
-import {NavLink, useLocation, Link} from "react-router-dom";
+import { Menu } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook, faSignsPost, faUser } from "@fortawesome/free-solid-svg-icons";
+import { NavLink, useLocation, Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
-function Sidenav({color}) {
-  const {pathname} = useLocation();
+function Sidenav({ color }) {
+  const { pathname } = useLocation();
   const page = pathname.replace("/", "");
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     window.location.reload();
-  }
+  };
 
   const signin = [
     <svg
@@ -55,13 +55,29 @@ function Sidenav({color}) {
   return (
     <>
       <NavLink to="/posts">
-      <div className="brand">
-        <img src={logo} alt=""/>
-        <span>Dashboard</span>
-      </div>
+        <div className="brand">
+          <img src={logo} alt="" />
+          <span>Dashboard</span>
+        </div>
       </NavLink>
-      <hr/>
+      <hr />
       <Menu theme="light" mode="inline">
+        <Menu.Item key="0">
+          <NavLink to="/users">
+            <span
+              className="icon"
+              style={{
+                background: page === "user" ? color : "",
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faUser}
+                style={{ width: 16, height: 16 }}
+              />
+            </span>
+            <span className="label">Users</span>
+          </NavLink>
+        </Menu.Item>
         <Menu.Item key="1">
           <NavLink to="/posts">
             <span
@@ -70,7 +86,10 @@ function Sidenav({color}) {
                 background: page === "post" ? color : "",
               }}
             >
-              <FontAwesomeIcon icon={faBook} style={{width: 16, height: 16}} />
+              <FontAwesomeIcon
+                icon={faBook}
+                style={{ width: 16, height: 16 }}
+              />
             </span>
             <span className="label">Posts</span>
           </NavLink>
@@ -83,7 +102,10 @@ function Sidenav({color}) {
                 background: page === "story" ? color : "",
               }}
             >
-              <FontAwesomeIcon icon={faSignsPost} style={{width: 16, height: 16}} />
+              <FontAwesomeIcon
+                icon={faSignsPost}
+                style={{ width: 16, height: 16 }}
+              />
             </span>
             <span className="label">Stories</span>
           </NavLink>
@@ -91,20 +113,21 @@ function Sidenav({color}) {
         <Menu.Item className="menu-item-header" key="5">
           Trang tài khoản
         </Menu.Item>
-        {
-          !isLoggedIn ? <Menu.Item key="3">
+        {!isLoggedIn ? (
+          <Menu.Item key="3">
             <NavLink to="/sign-in">
               <span className="icon">{signin}</span>
               <span className="label">Đăng nhập</span>
             </NavLink>
-          </Menu.Item> :
-            <Menu.Item key="4">
-              <Link to={'#'} onClick={() => handleLogout()}>
-                <span className="icon">{signup}</span>
-                <span className="label" >Đăng xuất</span>
-              </Link>
-            </Menu.Item>
-        }
+          </Menu.Item>
+        ) : (
+          <Menu.Item key="4">
+            <Link to={"#"} onClick={() => handleLogout()}>
+              <span className="icon">{signup}</span>
+              <span className="label">Đăng xuất</span>
+            </Link>
+          </Menu.Item>
+        )}
       </Menu>
     </>
   );
