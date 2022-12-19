@@ -33,7 +33,7 @@ export default function SignIn() {
         if(response.status === 201) {
           message.success('Login successfully!');
           localStorage.setItem('isLoggedIn', true);
-          history.push('/posts');
+          history.push('/users');
           window.location.reload();
         }
       }catch (e) {

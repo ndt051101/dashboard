@@ -54,7 +54,7 @@ function Sidenav({ color }) {
 
   return (
     <>
-      <NavLink to="/posts">
+      <NavLink to="/users">
         <div className="brand">
           <img src={logo} alt="" />
           <span>Dashboard</span>

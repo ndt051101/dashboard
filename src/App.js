@@ -17,9 +17,10 @@ function App() {
 
           {
               isLoggedIn ? <Main>
+
+                  <Route path="/users" component={Users}/>
                   <Route  path="/posts" component={Posts}/>
                   <Route path="/stories" component={Stories}/>
-                  <Route path="/users" component={Users}/>
 
               </Main> : <Route path="*" component={SignIn}/>
           }
